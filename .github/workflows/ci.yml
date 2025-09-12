@@ -45,20 +45,6 @@ jobs:
           nohup java -jar app/*.jar > app.log 2>&1 &
           echo $! > app.pid
       
-      - name: Aguardar app ficar pronto (timeout ~30s)
-        shell: bash
-        run: |
-          for i in {1..30}; do
-            if curl -fsS http://localhost:3000/actuator/health >/dev/null 2>&1 || \
-               curl -fsS http://localhost:3000/ping >/dev/null 2>&1; then
-              echo "App está respondendo."
-              exit 0
-            fi
-            sleep 1
-          done
-          echo "App não inicializou a tempo."
-          echo "Ultimas linhas do log: " && tail -n 200 app.log || true
-          exit 1
       - name: Testar endpoint /ping
         run: |
           curl -fsS http://localhost:3000/ping | grep "pong"
