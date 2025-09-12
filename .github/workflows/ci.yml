@@ -47,7 +47,7 @@ jobs:
       
       - name: Testar endpoint /ping
         run: |
-          curl -fsS http://localhost:3000/ping | grep "pong"
+          curl -fsS http://localhost:8080/ping | grep "pong"
       
       - name: Para aplicação
         if: always()
