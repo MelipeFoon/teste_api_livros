@@ -32,6 +32,8 @@ jobs:
   test:
     name: Teste ping/pong
     runs-on: ubuntu-latest
+    env: 
+      APP_PORT: "8080"
     needs: build
     steps:
       - name: Baixar JAR do build
@@ -42,14 +44,29 @@ jobs:
       
       - name: Iniciar aplicação em background
         run: |
-          nohup java -jar app/*.jar > app.log 2>&1 &
+          nohup java -jar app/*.jar --server.port="$APP_PORT" > app.log 2>&1 &
           echo $! > app.pid
+
+      - name: Aguardar app ficar pronto (timeout ~30s)
+        shell: bash
+        run: |
+          for i in {1..30}; do
+            if curl -fsS --max-time 1 http://localhost:$APP_PORT/actuator/health >/dev/null 2>&1 || \
+               curl -fsS --max-time 1 http://localhost:$APP_PORT/ping >/dev/null 2>&1; then
+              echo "App está respondendo."
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "App não inicializou a tempo."
+          echo "Ultimas linhas do log: " && tail -n 200 app.log || true
+          exit 1
       
       - name: Testar endpoint /ping
         run: |
-          curl -fsS http://localhost:8080/ping | grep "pong"
+          curl -fsS http://localhost:$APP_PORT/ping | grep "pong"
       
-      - name: Para aplicação
+      - name: Parar aplicação
         if: always()
         run: |
           if [ -f app.pid ]; then kill "$(cat app.pid)" || true; fi
