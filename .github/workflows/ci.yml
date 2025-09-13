@@ -65,6 +65,10 @@ jobs:
       - name: Testar endpoint /ping
         run: |
           curl -fsS http://localhost:$APP_PORT/ping | grep "pong"
+
+      - name: Teste de qualidade do código
+        run: mvn pmd:check
+        continue-on-error: true
       
       - name: Parar aplicação
         if: always()
