@@ -104,5 +104,11 @@ jobs:
             target/site/pmd.html
             target/site/**/pmd.html
             target/site/pmd.xml
-
+      - name: Parar aplicação
+        if: always()
+        run: |
+          if [ -f app.pid ]; then kill "$(cat app.pid)" || true; fi
+          sleep 1
+          pkill -f 'java -jar' || true
+          echo "Logs: " && tail -n 200 app.log || true
 
