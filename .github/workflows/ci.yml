@@ -86,8 +86,23 @@ jobs:
             distribution: temurin
             java-version: '17'
             cache: maven
+      - name: pmd (xml)
+        run: mvn pmd:pmd
       - name: pmd check
         run: mvn pmd:check
         continue-on-error: true
+      - name: Gerar site (html)
+        run: mvn site
+        continue-on-error: true
+      - name: upload relatório pmd
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmd-reports
+          path: |
+            target/pmd.xml
+            target/site/pmd.html
+            target/site/**/pmd.html
+            target/site/pmd.xml
 
 
