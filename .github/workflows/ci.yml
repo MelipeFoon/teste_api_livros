@@ -78,9 +78,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v4
-      - name: Setup Java 17
+      - name: setup java 17
         uses: actions/setup-java@v4
         with:
             distribution: temurin
@@ -111,4 +111,30 @@ jobs:
           sleep 1
           pkill -f 'java -jar' || true
           echo "Logs: " && tail -n 200 app.log || true
+
+  teste_u:
+    name: Testes unitários
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+            distribution: temurin
+            java-version: '17'
+            cache: maven
+      - name: mvn test
+        run: mvn test
+        
+      - name: Parar aplicação
+        if: always()
+        run: |
+          if [ -f app.pid ]; then kill "$(cat app.pid)" || true; fi
+          sleep 1
+          pkill -f 'java -jar' || true
+          echo "Logs: " && tail -n 200 app.log || true
+
+
 
