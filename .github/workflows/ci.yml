@@ -87,14 +87,17 @@ jobs:
             java-version: '17'
             cache: maven
       - name: pmd (xml)
-        run: mvn pmd:pmd
+        run: mvn pmd:pmd 
+
       - name: pmd check
         run: mvn pmd:check
         continue-on-error: true
-      - name: Gerar site (html)
-        run: mvn site
-        continue-on-error: true
-      - name: upload relatório pmd
+      
+      # - name: Gerar relatório (pmd)
+      #   run: mvn site
+      #   continue-on-error: true
+
+      - name: upload relatório (pmd)
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -104,6 +107,7 @@ jobs:
             target/site/pmd.html
             target/site/**/pmd.html
             target/site/pmd.xml
+
       - name: Parar aplicação
         if: always()
         run: |
@@ -127,7 +131,16 @@ jobs:
             cache: maven
       - name: mvn test
         run: mvn test
-        
+
+      - name: upload relatório (Surefire)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-reports
+          path: |
+            target/surefire-reports/*.xml
+            target/site/surefire-reports.html
+
       - name: Parar aplicação
         if: always()
         run: |
