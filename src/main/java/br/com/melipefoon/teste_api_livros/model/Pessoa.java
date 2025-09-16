@@ -25,6 +25,6 @@ public class Pessoa {
     private int idade;
 
     public String toString(){
-        return String.format("nome: %s/nsobrenome: %s/nidade: %d", nome, sobrenome, idade);
+        return "nome: " + nome + "/nsobrenome: " + sobrenome;
     }
 }
