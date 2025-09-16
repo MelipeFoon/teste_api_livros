@@ -13,4 +13,5 @@ https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
     <rule ref="category/java/bestpractices.xml/SystemPrintln" />
     <rule ref="category/java/bestpractices.xml/UnusedLocalVariable" /> 
     <rule ref="category/java/bestpractices.xml/AbstractClassWithoutAbstractMethod" />
+    <rule ref="category/java/bestpractices.xml/MissingOverride" />
 </ruleset>
