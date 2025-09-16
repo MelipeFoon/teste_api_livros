@@ -7,24 +7,28 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-//construtor padrão
-@NoArgsConstructor
-//construtor com todos os parâmetros, na ordem de declaração
-@AllArgsConstructor
-//quando aplicados a uma classe 
-//geram getters/setters para todos os campos não marcados como static
-@Getter
-@Setter
-@Entity
-public class Pessoa {
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String nome;
-    private String sobrenome;
-    private int idade;
+// //construtor padrão
+// @NoArgsConstructor
+// //construtor com todos os parâmetros, na ordem de declaração
+// @AllArgsConstructor
+// //quando aplicados a uma classe 
+// //geram getters/setters para todos os campos não marcados como static
+// @Getter
+// @Setter
+// @Entity
+// public class Pessoa {
+//     @Id
+//     @GeneratedValue
+//     private Long id;
+//     private String nome;
+//     private String sobrenome;
+//     private int idade;
 
-    public String toString(){
-        return "nome: " + nome + "/nsobrenome: " + sobrenome;
-    }
+//     public String algumaCoisa(){
+//         return "nome: " + nome + "/nsobrenome: " + sobrenome;
+//     }
+// }
+
+public interface Pessoa {
+    public void algumaCoisa();
 }
