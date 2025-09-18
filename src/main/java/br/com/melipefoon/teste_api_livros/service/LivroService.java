@@ -25,4 +25,13 @@ public class LivroService {
     public List<Livro> listar() {
         return this.livroRepository.findAll();
     }
+
+    public double precoMedio() {
+        return 
+            this.listar()
+            .stream()
+            .mapToDouble(Livro::getPreco)
+            .average()
+            .getAsDouble();
+    }
 }

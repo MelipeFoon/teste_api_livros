@@ -22,4 +22,10 @@ public class LivroController {
     public List<Livro> listar() {
         return this.livroService.listar();
     }
+
+    @GetMapping("/precos")
+    public double getPrecoMedio() {
+        return this.livroService.precoMedio();
+        
+    }
 }
