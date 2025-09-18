@@ -47,7 +47,7 @@ public class PrecoMedioTeste {
                 MockMvcRequestBuilders
                 .post("/livros/salvar")
                 //observe como o método writeValueAsString converte o objeto Java para JSON
-                .content(objectWriter.writeValueAsString(11))
+                .content(objectWriter.writeValueAsString(l1))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         )
@@ -56,8 +56,8 @@ public class PrecoMedioTeste {
         //armazenando o segundo livro
         mockMvc.perform(
                 MockMvcRequestBuilders
-                .post("/livros/salvar", 12)
-                .content(objectWriter.writeValueAsString(12))
+                .post("/livros/salvar", l2)
+                .content(objectWriter.writeValueAsString(l2))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         )
