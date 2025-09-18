@@ -23,4 +23,5 @@ public class Livro {
     private String titutlo;
     private String autor;
     private int edicao;
+    private double preco;
 }
