@@ -33,8 +33,8 @@ public class PrecoMedioTeste {
     @Test
     public void test() throws Exception {
         //construção dos dois livros
-        Livro l1 = new Livro(11, "Livro1", "Fulano1", 1, 200);
-        Livro l2 = new Livro(21, "Livro2", "Fulano2", 2, 300);
+        Livro l1 = new Livro(1l, "Livro1", "Fulano1", 1, 200);
+        Livro l2 = new Livro(2l, "Livro2", "Fulano2", 2, 300);
 
         //valor esperado
         double valorMedioEsperado = 250;
