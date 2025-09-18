@@ -40,7 +40,7 @@ public class PrecoMedioTeste {
         double valorMedioEsperado = 250;
 
         //usando a biblioteca JACKSON para converter de objeto Java para JSON textual
-        ObjectWriter objectWriter = new ObjectWriter().writer;
+        ObjectWriter objectWriter = new ObjectMapper().writer();
 
         //armazenando o primeiro livro
         mockMvc.perform(
