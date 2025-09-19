@@ -66,7 +66,7 @@ public class PrecoMedioTest {
         mockMvc
         //realiza a requisição
         .perform(
-                get("/livros/precoMedio")
+                get("/livros/precos")
         )
         //isOk: 200 OK
         .andExpect(status().isOk())
