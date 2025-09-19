@@ -20,7 +20,7 @@ public class Livro {
     @Id
     @GeneratedValue
     private Long id;
-    private String titutlo;
+    private String titulo;
     private String autor;
     private int edicao;
     private double preco;
