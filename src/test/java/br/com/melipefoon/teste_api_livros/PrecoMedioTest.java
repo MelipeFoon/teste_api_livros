@@ -44,22 +44,22 @@ public class PrecoMedioTest {
 
         //armazenando o primeiro livro
         mockMvc.perform(
-                MockMvcRequestBuilders
-                .post("/livros/salvar", l1)
-                //observe como o método writeValueAsString converte o objeto Java para JSON
-                .content(objectWriter.writeValueAsString(l1))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
+            MockMvcRequestBuilders
+            .post("/livros/salvar")
+            //observe como o método writeValueAsString converte o objeto Java para JSON
+            .content(objectWriter.writeValueAsString(l1))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
         )
         .andExpect(status().isOk());
 
         //armazenando o segundo livro
         mockMvc.perform(
-                MockMvcRequestBuilders
-                .post("/livros/salvar", l2)
-                .content(objectWriter.writeValueAsString(l2))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
+            MockMvcRequestBuilders
+            .post("/livros/salvar", l2)
+            .content(objectWriter.writeValueAsString(l2))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
         )
         .andExpect(status().isOk());
         //obtendo o valor médio
