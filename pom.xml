@@ -129,7 +129,7 @@
       			<groupId>org.apache.maven.plugins</groupId>
       			<artifactId>maven-pmd-plugin</artifactId>
       			<version>3.21.2</version>
-    </plugin>
+    		</plugin>
 
     <!-- (Opcional) Checkstyle no site, se quiser -->
     <!--
