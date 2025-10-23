@@ -93,9 +93,9 @@ jobs:
         run: mvn pmd:check
         continue-on-error: true
       
-      # - name: Gerar relatório (pmd)
-      #   run: mvn site
-      #   continue-on-error: true
+      - name: Gerar relatório (pmd)
+        run: mvn site
+        continue-on-error: true
 
       - name: upload relatório (pmd)
         if: always()
@@ -130,7 +130,7 @@ jobs:
             java-version: '17'
             cache: maven
       - name: mvn test
-        run: mvn test
+        run: mvn -B Clean test
 
       - name: Generate Surefire HTML report
         run: mvn -B surefire-report:report
