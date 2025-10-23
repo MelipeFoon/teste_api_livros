@@ -135,6 +135,12 @@ jobs:
       - name: Generate Surefire HTML report
         run: mvn -B surefire-report:report
 
+      - name: Listar relatórios gerados
+        run: |
+          ls -la target || true
+          ls -la target/site || true
+          test -f target/site/surefire-report.html && echo "FOUND surefire-report.html" || echo "MISSING surefire-report.html"
+
       - name: upload relatório (Surefire)
         if: always()
         uses: actions/upload-artifact@v4
