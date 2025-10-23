@@ -132,6 +132,9 @@ jobs:
       - name: mvn test
         run: mvn test
 
+      - name: Generate Surefire HTML report
+        run: mvn -B surefire-report:report
+
       - name: upload relatório (Surefire)
         if: always()
         uses: actions/upload-artifact@v4
