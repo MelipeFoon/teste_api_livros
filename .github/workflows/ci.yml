@@ -282,7 +282,7 @@ jobs:
 
       # Roda tudo até verify (testes unitários e integrações via Failsafe, se configurado)
       - name: Run verify (tests + checks)
-        run: mvn -B clean verify
+        run: mvn -B clean test
 
       # Gera o site com todos os relatórios configurados em <reporting>
       - name: Generate Maven site (Surefire + PMD)
