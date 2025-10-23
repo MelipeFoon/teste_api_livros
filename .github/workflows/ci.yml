@@ -93,9 +93,9 @@ jobs:
         run: mvn -B clean pmd:check
         continue-on-error: true
       
-      # - name: Gerar relatório (pmd)
-      #   run: mvn site
-      #   continue-on-error: true
+      - name: Gerar relatório (pmd)
+        run: mvn -B clean site
+        continue-on-error: true
 
       - name: upload relatório (pmd)
         if: always()
@@ -147,8 +147,8 @@ jobs:
         with:
           name: unit-test-reports
           path: |
-            target/surefire-reports/*.xml
-            target/site/surefire-report.html
+            **/target/surefire-reports/*.xml
+            **/target/site/surefire-report.html
 
       - name: Parar aplicação
         if: always()
