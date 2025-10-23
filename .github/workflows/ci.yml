@@ -142,7 +142,7 @@ jobs:
           name: unit-test-reports
           path: |
             target/surefire-reports/*.xml
-            target/site/surefire-reports.html
+            target/site/surefire-report.html
 
       - name: Parar aplicação
         if: always()
