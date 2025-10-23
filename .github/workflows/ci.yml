@@ -135,6 +135,11 @@ jobs:
       - name: Generate Surefire HTML report
         run: mvn -B surefire-report:report
 
+      - name: Procurar surefire-report.html
+        run: |
+          echo "Diretório atual: $(pwd)"
+          find . -type f -name "surefire-report.html" || echo "Arquivo não encontrado"
+
       - name: Listar relatórios gerados
         run: |
           ls -la target || true
