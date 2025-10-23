@@ -87,15 +87,15 @@ jobs:
             java-version: '17'
             cache: maven
       - name: pmd (xml)
-        run: mvn pmd:pmd 
+        run: mvn -B clean pmd:pmd 
 
       - name: pmd check
-        run: mvn pmd:check
+        run: mvn -B clean pmd:check
         continue-on-error: true
       
-      - name: Gerar relatório (pmd)
-        run: mvn site
-        continue-on-error: true
+      # - name: Gerar relatório (pmd)
+      #   run: mvn site
+      #   continue-on-error: true
 
       - name: upload relatório (pmd)
         if: always()
@@ -130,7 +130,7 @@ jobs:
             java-version: '17'
             cache: maven
       - name: mvn test
-        run: mvn -B Clean test
+        run: mvn -B clean test
 
       - name: Generate Surefire HTML report
         run: mvn -B surefire-report:report
