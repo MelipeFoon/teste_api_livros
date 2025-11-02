@@ -10,5 +10,6 @@ public class PingPongController {
     @GetMapping
     public String executando() {
         return "pong";
+
     }
 }
